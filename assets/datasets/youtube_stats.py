@@ -72,7 +72,8 @@ def get_stats(channel_ids):
     return results
 
 
-df = pd.read_csv(INPUT_CSV)
+df = pd.read_csv(INPUT_CSV, encoding="utf-8-sig")
+df.columns = df.columns.str.strip().str.upper()
 
 # 1. Resolve each NAME to a channel ID
 df["yt_channel_id"] = df["NAME"].apply(find_channel_id)
